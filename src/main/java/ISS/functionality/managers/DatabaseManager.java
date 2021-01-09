@@ -20,7 +20,7 @@ public class DatabaseManager {
         positionDao.save(position);
     }
 
-    public Position[] getTwoLastPositionRecords(){
+    public Position[] getTwoLastPositions(){
 
         Position last = positionDao.findFromTheEnd(1);
         Position penultimate = positionDao.findFromTheEnd(2);
@@ -28,8 +28,13 @@ public class DatabaseManager {
         return new Position[]{last,penultimate};
     }
 
+    public Position getLastPosition(){
+        return positionDao.findFromTheEnd(1);
+    }
+
     public void saveNumberOfAstronauts(String json){
-        NumberOfAstronauts number = numberOfAstronautsMapper.mapJsonToObject(json,NumberOfAstronauts.class);
+        NumberOfAstronauts number = numberOfAstronautsMapper.mapJsonToObject(json, NumberOfAstronauts.class);
+        number.setTimestamp(System.currentTimeMillis() / 1000L);
         numberOfAstronautsDao.save(number);
     }
 

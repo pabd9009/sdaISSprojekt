@@ -4,7 +4,7 @@ import ISS.connection.IssApiCall;
 import ISS.connection.RequestType;
 import ISS.connection.WrongNumberOfArgumentsException;
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
-
+import ISS.functionality.userComms.MainWindow;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -33,10 +33,10 @@ public class PeopleInSpaceManager implements Runnable{
         } catch (WrongNumberOfArgumentsException e) {
             e.printStackTrace();
         }
-        /*DatabaseManager.saveAstronautsIntoDatabase(response);*/
+        MainWindow.getDatabaseManager().saveNumberOfAstronauts(response);
     }
 
-/*    public NumberOfAstronauts getPeopleInSpace() {
-        return DatabaseManager.getPeopleInSpaceFromDatabase();
-    }*/
+    public NumberOfAstronauts getPeopleInSpace() {
+        return MainWindow.getDatabaseManager().getLastNumberOfAstronauts();
+    }
 }
