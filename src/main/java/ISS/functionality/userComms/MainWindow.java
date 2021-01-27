@@ -24,7 +24,7 @@ public class MainWindow {
 	private JButton peopleInSpaceButton;
 	private JButton passTimesButton;
 	private JButton exitButton;
-	private JTextPane outputPane;
+	private JTextPane outputPane; //TODO zjedzone "l" na koncu?
 	private JButton button_showSpeed;
 
 	public MainWindow() {
@@ -73,20 +73,25 @@ public class MainWindow {
 
 	private void displayAstronauts(NumberOfAstronauts astronauts) {
 		String PiS = "Ilość ludzi przebywających obecnie w kosmosie: " +
-				astronauts.getCount();
+				astronauts.getCount() + astronauts.getPeople();
 				
 		outputPane.setText(PiS);
 	}
 
 	private void displayPassTimes() {
-		String passTimesString = "Przeloty dla zadanych parametrów: \n";
+		String PiS = "Przeloty dla zadanych parametrów: \n";
 		
 		ISSPass[] issPassesArray = MainWindow.getIssPassesManager().getPasses(
 				Double.parseDouble(PassTimes.getLatitude()),
 				Double.parseDouble(PassTimes.getLongitude()),
 				Integer.parseInt(PassTimes.getPassNo()));
-				
-		int count = 1;
+
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < issPassesArray.length; i++) {
+			sb.append(i+1).append(". ").append(issPassesArray[i].toString()).append("\n");
+		}
+
+/*		int count = 1;
 		for (ISSPass pass : issPassesArray) {
 			SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy, HH:mm");
 			String formattedDate = sdf.format(pass.getRisetime()*1000L);
@@ -94,14 +99,14 @@ public class MainWindow {
 			passTimesString += "\nPrzelot " + count + ":\n" +
 					formattedDate + ", czas trwania: " +
 					duration + " minut";
-			
+
 			if (duration < 5)
 				passTimesString += "y";
-			
+
 			count++;
-		}
-		
-		outputPane.setText(passTimesString);
+		}*/
+
+		outputPane.setText(PiS + sb);
 	}
 	
 	private void preparePassTimesWindow() {

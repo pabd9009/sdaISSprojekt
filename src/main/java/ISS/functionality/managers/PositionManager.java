@@ -4,6 +4,7 @@ import ISS.connection.IssApiCall;
 import ISS.connection.RequestType;
 import ISS.connection.WrongNumberOfArgumentsException;
 import ISS.functionality.userComms.MainWindow;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +28,7 @@ public class PositionManager implements Runnable{
 
     @Override
     public void run() {
-        IssApiCall issApiCall = new IssApiCall();
+        IssApiCall issApiCall = IssApiCall.getInstance();
         String response = null;
         try {
             response = issApiCall.runRequest(RequestType.CURRENT_POSITION);

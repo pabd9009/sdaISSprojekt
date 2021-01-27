@@ -1,5 +1,8 @@
 package ISS.functionality.isspasses;
 
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
+
 public class ISSPass {
 
     private long risetime;
@@ -29,11 +32,10 @@ public class ISSPass {
         this.duration = duration;
     }
 
+    //TODO String do ogarniecia! PRZED ZMIANAMI ZROBIĆ PULLA!
     @Override
     public String toString() {
-        return "Pass{" +
-                "risetime=" + risetime +
-                ", duration=" + duration +
-                '}';
+        Timestamp ts = new Timestamp(risetime*1000L);
+        return "Przelot - " + "data: " + ts.toLocalDateTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm")) + ", czas trwania: " + duration + " s";
     }
 }

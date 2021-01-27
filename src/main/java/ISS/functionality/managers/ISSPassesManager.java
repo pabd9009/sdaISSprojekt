@@ -9,7 +9,7 @@ import ISS.json.mapper.JsonMapper;
 
 public class ISSPassesManager {
 
-    IssApiCall apiCall = new IssApiCall();
+    IssApiCall apiCall = IssApiCall.getInstance();
 
     public ISSPass[] getPasses(double latitude, double longitude, int passesCount){
 

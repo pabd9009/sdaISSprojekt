@@ -2,8 +2,10 @@ package ISS.database.numberofastronauts.daoimpl;
 
 import ISS.database.dao.Dao;
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
+import ISS.database.person.entity.Person;
 import ISS.database.utils.HibernateUtils;
 import org.hibernate.Session;
+
 import javax.persistence.NoResultException;
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class NumberOfAstronautsDaoImpl implements Dao<NumberOfAstronauts> {
         session.beginTransaction();
 
         session.save(number);
+        for (Person person: number.getPeople()) {
+            person.setNumber(number);
+            session.saveOrUpdate(person);
+        }
 
         session.getTransaction().commit();
         session.close();

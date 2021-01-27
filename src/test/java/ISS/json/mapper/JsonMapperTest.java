@@ -2,7 +2,6 @@ package ISS.json.mapper;
 
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
 import ISS.database.position.entity.Position;
-import ISS.functionality.isspasses.ISSPassesRequest;
 import ISS.functionality.isspasses.ISSPassesResponse;
 import ISS.functionality.isspasses.ISSPass;
 import org.junit.jupiter.api.Test;
@@ -120,8 +119,7 @@ class JsonMapperTest {
                 "  ]\n" +
                 "}";
         ISSPass[] ISSPasses = {new ISSPass(1609715393,551),new ISSPass(1609721117,645),new ISSPass(1609726911,656)};
-        ISSPassesRequest request = new ISSPassesRequest(52.229676,21.012229,100,3,1609692121);
-        ISSPassesResponse expectedResponse = new ISSPassesResponse("success",request, ISSPasses);
+        ISSPassesResponse expectedResponse = new ISSPassesResponse(ISSPasses);
 
         //when
         ISSPassesResponse mappedResponse = issPassesResponseMapper.mapJsonToObject(json,ISSPassesResponse.class);

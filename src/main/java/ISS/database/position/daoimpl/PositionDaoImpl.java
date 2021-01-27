@@ -4,6 +4,7 @@ import ISS.database.dao.Dao;
 import ISS.database.position.entity.Position;
 import ISS.database.utils.HibernateUtils;
 import org.hibernate.Session;
+
 import javax.persistence.NoResultException;
 import java.util.List;
 

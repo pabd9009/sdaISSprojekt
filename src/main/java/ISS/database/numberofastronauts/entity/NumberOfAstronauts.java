@@ -1,15 +1,16 @@
 package ISS.database.numberofastronauts.entity;
 
+import ISS.database.person.entity.Person;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "number_of_astronauts")
-@JsonIgnoreProperties(value = {"people","message"})
+@JsonIgnoreProperties(value = "message")
 public class NumberOfAstronauts {
 
     @Id
@@ -17,12 +18,26 @@ public class NumberOfAstronauts {
     @JsonProperty("number")
     private int count;
 
+    @OneToMany(mappedBy = "number", fetch = FetchType.EAGER)
+    private Set<Person> people;
+
     public NumberOfAstronauts() {
     }
 
     public NumberOfAstronauts(long timestamp, int count) {
         this.timestamp = timestamp;
         this.count = count;
+    }
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public Set<Person> getPeople() {
+        return people;
+    }
+
+    public void setPeople(Set<Person> people) {
+        this.people = people;
     }
 
     public long getTimestamp() {

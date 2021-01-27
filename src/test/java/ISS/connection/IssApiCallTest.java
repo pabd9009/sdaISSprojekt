@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IssApiCallTest {
-	private final IssApiCall request = new IssApiCall();
+	private final IssApiCall request = IssApiCall.getInstance();
 	
 	@Test
 	void runRequestWithCurrentLocation() throws WrongNumberOfArgumentsException {

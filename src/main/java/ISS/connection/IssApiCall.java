@@ -1,14 +1,26 @@
 package ISS.connection;
 
-import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import java.io.IOException;
 
 public class IssApiCall {
 
-	private final OkHttpClient client = HttpClient.getClient();
-	
+	private final OkHttpClient client;
+	private static IssApiCall instance;
+
+	private IssApiCall(){
+		client = new OkHttpClient();
+	}
+
+	public static IssApiCall getInstance(){
+		if(instance==null){
+			instance = new IssApiCall();
+		}
+		return instance;
+	}
+
 	private String run(String url) throws IOException {
 
 		String httpResponse = null;

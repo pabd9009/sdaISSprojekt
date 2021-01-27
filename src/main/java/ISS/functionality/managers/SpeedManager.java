@@ -5,6 +5,7 @@ import ISS.functionality.functions.Maths;
 import ISS.functionality.userComms.MainWindow;
 
 public class SpeedManager {
+    //TODO pozycje w argumencie?
     public double getSpeed(){
         Position[] issPositions = MainWindow.getDatabaseManager().getTwoLastPositions();
 
